@@ -1,19 +1,35 @@
 # Psychic-guacamole
-A personal project focused on creating a personal API. 
+A personal project focused on creating a personal API. This will focus on integrating the Adyen API for processing transactions. 
+
+Be on the lookout for weekly updates.
+
+***
+### **UML Diagram:**
 
 
-#Technologies used: 
+***
+### **Technologies used:**
+<ul>
+<li>NodeJS</li>
+<li>Express</li>
+<li>Sequelize</li>
+<li>Postgress</li>
+<li>Nodemon</li>
+<li>React</li>
+<li>Javascript</li>
+<li>Vanilla CSS</li>
+</ul>
 
-#Instructions
-To run locally please fork the repository 
-
-Open up the terminal and enter the command below: 
-
-npm install  
-(This will install all the dependencies needed to run the app)
-
-To run the app locally enter this command into the terminal: 
-
-npm start
-npm dev start 
-
+***
+### **How to Run Locally:**
+<ol>
+<li>Fork the repository</li>
+<li>Clone the copy locally</li>
+<li>CD into the repository and run this command on the terminal:
+`npm install`  
+*This will install the dependencies</li>
+<li>run this command on the terminal: npm start
+* To start the back end</li>
+<li>TBD</li>
+<li>TBD</li>
+</ol>
