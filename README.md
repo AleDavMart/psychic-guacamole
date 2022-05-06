@@ -5,7 +5,7 @@ Be on the lookout for weekly updates.
 
 ***
 ### **UML Diagram:**
-
+![Postgres Database](Imgs/BasicDatabase.png)
 
 ***
 ### **Technologies used:**
