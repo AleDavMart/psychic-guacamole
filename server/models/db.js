@@ -1,6 +1,6 @@
 const { Sequelize, DataTypes, Model } = require('sequelize');
 
-const sequelize = new Sequelize('postgresql://localhost/PsychichGuacamole', {
+const db = new Sequelize('postgresql://localhost/PsychichGuacamole', {
   define: {  //makes sure that sequelize does not pluralize the table name
     freezeTableName: true
   },
@@ -8,9 +8,10 @@ const sequelize = new Sequelize('postgresql://localhost/PsychichGuacamole', {
 }); // passing a connection URI
 
 try { // checking the connection to the db
-  sequelize.authenticate();
+  db.authenticate();
   console.log('Connection has been established successfully.');
 }catch (error) {
   console.error('Unable to connect to the database:', error);
 }
 
+module.exports = { db, DataTypes, Model }
