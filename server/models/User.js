@@ -21,8 +21,7 @@ User.init({
     allowNull: false
   }
 },{
-  sequelize,
-  modelName: 'User'
+  sequelize
 });
 
 module.exports = { User }
