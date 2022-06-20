@@ -19,6 +19,13 @@ User.init({
   userName: {
     type: DataTypes.STRING,
     allowNull: false
+  },
+  shoppingCart :{
+    type: DataTypes.CHAR,
+    allowNull: false
+  },
+  orderHistory:{
+    type : DataTypes.ARRAY
   }
 },{
   sequelize

@@ -3,7 +3,7 @@ const { Sequelize, DataTypes, Model } = require('./db');
 class Payment extends Model {}
 
 Payment.init({
-  //need to test payments to see what is provided in the reponse and create this model]
+
   id: { type: DataTypes.INTEGER, autoIncrement: true,primaryKey: true},
   pspReference :{ type: DataTypes.STRING},
   merchantReference: {type: DataTypes.STRING}, //should be a combination of username and cart id
