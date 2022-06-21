@@ -19,4 +19,4 @@ Order.init({
   sequelize
 }) 
 
-module.exports = {Order}
+module.exports = {Order}oc
