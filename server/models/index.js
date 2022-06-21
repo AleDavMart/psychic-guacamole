@@ -36,18 +36,15 @@ Order.belongsTo(Payment, {
   }
 });
 
+Order.hasOne(Order, {
+  foreignKey: {
+    userId: 'userid',
+    orderItems: 'items',
+    orderTotal: 'totalcost',
+    orderTax: 'totalTax'
+  }
+})
 
 
 
-
-// User.hasMany(Payment, { //a shopper can shop muitlple times at a store
-//   foreignKey:{
-//     UserID: 'id' // this will tie the payments to a specific user
-//   }
-// }) 
-
-
-
-// Cart.hasMany(Product, {
-// }) // can have multiple items in shopping cart
 
