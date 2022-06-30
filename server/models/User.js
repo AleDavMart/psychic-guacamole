@@ -19,6 +19,9 @@ User.init({
   userName: {
     type: DataTypes.STRING,
     allowNull: false
+  },password:{
+      type: DataTypes.STRING,
+      allowNull:false
   },
   shoppingCart :{
     type: DataTypes.CHAR,
