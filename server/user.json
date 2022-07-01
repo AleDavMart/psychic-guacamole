@@ -1,7 +1,7 @@
 {
   "userdata":[
-    {"firstName":"Dolores", "lastName":"Abernathy", "userName":"SweetWater30"},
-    {"firstName":"Maeve", "lastName":"Millay", "userName":"Mariposa54"},
-    {"firstName":"Rachel", "lastName":"Sasz", "userName":"Columbia16"}
+    {"firstName":"Dolores", "lastName":"Abernathy", "userName":"SweetWater30", "password":"123test"},
+    {"firstName":"Maeve", "lastName":"Millay", "userName":"Mariposa54","password":"test789"},
+    {"firstName":"Rachel", "lastName":"Sasz", "userName":"Columbia16", "password":"testing1234"}
   ]
 }
