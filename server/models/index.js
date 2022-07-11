@@ -1,4 +1,4 @@
-const { Sequelize, DataTypes, Model } = require('./db');
+const { db, DataTypes, Model } = require('./db');
 
 const { User } = require('./User')
 const {Product} = require('./Product')

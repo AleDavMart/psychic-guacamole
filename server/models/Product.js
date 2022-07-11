@@ -1,4 +1,4 @@
-const { Sequelize, DataTypes, Model } = require('./db');
+const { db, DataTypes, Model } = require('./db');
 
 class Product extends Model {}
 
@@ -10,7 +10,7 @@ Product.init({
   quantity: { type: DataTypes.INTEGER},
   picture: { type: DataTypes.STRING} // need to check if this is the correct data type for images
 },{
-  sequelize
+  sequelize: db
 })
 
 module.exports = { Product}

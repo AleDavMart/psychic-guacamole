@@ -1,4 +1,4 @@
-const { Sequelize, DataTypes, Model } = require('./db');
+const { db, DataTypes, Model } = require('./db');
 
 class User extends Model {}
 
@@ -28,10 +28,10 @@ User.init({
     allowNull: false
   },
   orderHistory:{
-    type : DataTypes.ARRAY
+    type : DataTypes.CHAR
   }
 },{
-  sequelize
+  sequelize: db
 });
 
 module.exports = { User }

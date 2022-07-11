@@ -1,4 +1,4 @@
-const { Sequelize, DataTypes, Model } = require('./db');
+const { db, DataTypes, Model } = require('./db');
 
 class Order extends Model {}
 
@@ -7,7 +7,7 @@ Order.init({
   id: { type: DataTypes.STRING,primaryKey: true}, // should be the merchant reference - need to write a function to create this
   orderStatus: { type: DataTypes.STRING, allowNull: false}, //write a function to update order status according to payment status
   userid : {type: DataTypes.INTEGER}, // same as cart.userid
-  orderItems: { type: DataTypes.ARRAY}, // this is the same as cart.items
+  orderItems: { type: DataTypes.CHAR}, // this is the same as cart.items - needs to be a string
   orderTotal: {type: DataTypes.INTEGER}, // = cart.totalCost
   orderTax: { type: DataTypes.INTEGER}, // = cart.totatTax
   orderGTotal: {type: DataTypes.INTEGER},// = Payment.amount
@@ -16,7 +16,7 @@ Order.init({
   brand: {type: DataTypes.STRING} // = Payment.brand
  
 },{
-  sequelize
+  sequelize:db
 }) 
 
 module.exports = {Order}

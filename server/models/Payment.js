@@ -1,4 +1,4 @@
-const { Sequelize, DataTypes, Model } = require('./db');
+const { db, DataTypes, Model } = require('./db');
 
 class Payment extends Model {}
 
@@ -16,7 +16,7 @@ Payment.init({
 
 
 },{
-  sequelize
+  sequelize:db
 })
 
 module.exports = {Payment}
