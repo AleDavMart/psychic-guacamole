@@ -45,6 +45,6 @@ Order.hasOne(Order, {
   }
 })
 
-module.exports= {User, Product, Cart, Payment, Order}
+module.exports= {User, Product, Cart, Payment, Order};
 
 
