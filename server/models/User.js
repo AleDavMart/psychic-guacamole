@@ -25,7 +25,7 @@ User.init({
   },
   shoppingCart :{
     type: DataTypes.CHAR,
-    allowNull: false
+    allowNull: true
   },
   orderHistory:{
     type : DataTypes.CHAR

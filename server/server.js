@@ -1,14 +1,16 @@
  // imports
-const express = require('express')
-const app = express()
-const PORT = 3000
+const express = require('express');
+const app = express();
+const PORT = 3000;
+const cors = require('cors');
 const pool = require("./models/db");
 
 const seed = require('./seed');
-const { db } = require('./db');
+const { db } = require('./models/db');
 const {User, Product, Cart, Payment, Order}= require('./models/index');
 const path = require ('path');
-const bodyParser = require('body-parser')
+const morgan = require('morgan');
+const bodyParser = require('body-parser');
 
 app.use(cors());
 
@@ -22,20 +24,21 @@ app.use(express.json());
 seed()
 
 
-//Enabling environment variables by parsing the .env file - MAY NEED TO REMOVE LATER 
-dotenv.config({
-  path: './.env'
-});
+// //Enabling environment variables by parsing the .env file - MAY NEED TO REMOVE LATER 
+// dotenv.config({
+//   path: './.env'
+// });
 
 // -------DB Internal API Routes ------ //
 
 //Getting all Users
 app.get('/users', async (req, res)=>{
   try{
-    const allUsers = await pool.query("SELECT * FROM User");
-    res.json(allUsers.rows);
+    const allUsers = await User.findAll();
+    res.json(allUsers);
       
   }catch (error) {
     console.error(error);
 }
 });
+
