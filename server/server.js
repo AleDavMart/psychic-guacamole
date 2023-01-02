@@ -29,6 +29,11 @@ seed()
 //   path: './.env'
 // });
 
+//set up app to listen on set port
+app.listen( PORT, () => {
+  console.log(`Your server is now listening to port ${PORT}`)
+})
+
 // -------DB Internal API Routes ------ //
 
 //Getting all Users

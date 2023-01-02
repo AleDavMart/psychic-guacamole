@@ -2,6 +2,6 @@
   "productdata":[
     {"name":"Hoka Anacapa Mid GTX Hiking Boots","description":"An easy pick for any trail, the women's HOKA Anacapa Mid GTX hiking boots are light, grippy, waterproof and versatile. Consider them your gateway to the great outdoors. Waterproof and weigh: 1.2lb","price":"18000","quantity":"12","picture":""},
     {"name":"Bear Hiking Socks","description":"Lightly cushioned hiking socks with all the anti-funk qualities of merino wool, the women's Darn Tough Bear Town Micro Crew socks give you freedom and flex to hike your way up any trail.","price":"1299","quantity":"20","picture":"${Imgs/BearHikingSocks.jpeg}"},
-    {"name":"Osprey Katari 3 Hydration Pack","description":"External reservoir sleeve allows quick reservoir access; Osprey Hydraulics LT 2.5 L (2.5-liter) reservoir included","price":"9000","quantity":"6000","picture":""}
+    {"name":"Osprey Katari 3 Hydration Pack","description":"External reservoir sleeve allows quick reservoir access; Osprey Hydraulics LT 2.5 L (2.5-liter) reservoir included","price":"9000","quantity":"6000","picture":"${Imgs/WaterPack1.jpeg}"}
   ]
 }
