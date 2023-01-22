@@ -12,6 +12,7 @@ const path = require ('path');
 const morgan = require('morgan');
 const bodyParser = require('body-parser');
 const { userInfo } = require('os');
+const { where } = require('sequelize/types/utils');
 
 app.use(cors());
 
@@ -50,7 +51,9 @@ app.get('/user', async (req, res)=>{
 
 //Get a specfic user by userName
 app.get ('/user/:userName', async (req, res) => {
-  let userName = req.params.userName;
+  
+  try{
+    let userName = req.params.userName;
   let user = await User.findOne({ where: {userName: `${userName}`}});
 
   //NEED TO FIND A SPOT TO USE THIS LOGIC - SHOULD NOT RETURN SENSITIVE DATA
@@ -68,12 +71,18 @@ app.get ('/user/:userName', async (req, res) => {
   // return res.json([user.firstName,user.lastName, user.shoppingCart, user.orderHistory]);
 
   return res.json(user);
+  }catch{
+    let error = new SyntaxError('User does not exists or is misspelled');
+    return (error); 
+
+    // The error function is not working here - it only returns null 
+  }
 
     
 });
 
 //Get a list of all products
-app.get('/allproducts', async (res, req)=>{
+app.get('/product', async (req, res)=>{
   try{
     const allproduct = await Product.findAll();
     res.json(allproduct) //should return array of products
@@ -84,6 +93,25 @@ app.get('/allproducts', async (res, req)=>{
 
 });
 
-//Get a list of all products in stock 
+//Get  list of all products in stock 
+app.get('/product/stock', async (res, req)=>{
+try{
+  if(Product.quantity >= 1){
+    const productInStock = await Product.findAll({ 
+      where : {
+        quantity:{
+          gt: 0
+        }
+      }
+    });
+    res.json(productInStock);
+  };
+
+
+}catch(error){
+  console.error(error);
+}
+});
+
 
 //
