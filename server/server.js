@@ -12,7 +12,7 @@ const path = require ('path');
 const morgan = require('morgan');
 const bodyParser = require('body-parser');
 const { userInfo } = require('os');
-const { where } = require('sequelize/types/utils');
+const {Op, where} = require('sequelize');
 
 app.use(cors());
 
@@ -94,24 +94,36 @@ app.get('/product', async (req, res)=>{
 });
 
 //Get  list of all products in stock 
-app.get('/product/stock', async (res, req)=>{
+app.get('/product/stock', async (req, res) =>{
 try{
-  if(Product.quantity >= 1){
-    const productInStock = await Product.findAll({ 
+    let productInStock = await Product.findAll({ 
       where : {
         quantity:{
-          gt: 0
+          [Op.gt]:0
         }
-      }
-    });
+    }});
     res.json(productInStock);
-  };
-
-
-}catch(error){
-  console.error(error);
-}
+  }catch(error){
+    console.error(error);
+  }
 });
 
+// Get all payments processed 
+app.get('/payment', async (req, res)=>{
+  try{
+    
+  }catch(error){
+    console.log(error);
+  }
+})
 
-//
+
+// Get all payments processed by a User
+
+
+// Get shopping cart for a user
+
+
+// Get all past orders for a user 
+
+
