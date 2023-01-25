@@ -93,6 +93,19 @@ app.get('/product', async (req, res)=>{
 
 });
 
+//Get a specific product by id
+app.get('product/:id', async(req, res)=>{
+  try{
+    let productID = req.params.id;
+    let product = await Product.findByPk(productID);
+
+    return res.json(product);
+
+  }catch(error){
+  
+  }
+})
+
 //Get  list of all products in stock 
 app.get('/product/stock', async (req, res) =>{
 try{
@@ -108,17 +121,68 @@ try{
   }
 });
 
+//Update a product by id
+app.patch('/product/:id', async (req, res) =>{
+try{
+
+  let prodID = req.params.id
+
+  let newProduct = req.body
+
+  const [product, created] = await Product.findOrCreate({
+    where: {id: `${prodID}`}, 
+    defaults:{
+      name: `${newProduct.name}`,
+      description: `${newProduct.description}`,
+      price: `${newProduct.price}`,
+      quantity: `${newProduct.quantity}`,
+      picture:`${newProduct.picture}`
+    }
+  });
+
+  if(product){
+
+    if(newProduct.name === null){
+      return res.json('"name" parameter is required to update the product');
+    }else if(newProduct.description != null){
+        Product.update(
+          {description: `${newProduct.description}`},
+          {where: {id:`${prodID}`}}
+        )
+          return res.json(product);
+        
+      }
+    }
+
+ 
+   return res.json(created);
+  
+
+  
+  
+}catch{
+console.log(error);
+}
+});
+
 // Get all payments processed 
 app.get('/payment', async (req, res)=>{
   try{
-    
+
   }catch(error){
     console.log(error);
   }
-})
+});
 
 
 // Get all payments processed by a User
+app.get('/payment/:userName', async (req, res)=>{
+  try{
+
+  }catch{
+
+  }
+})
 
 
 // Get shopping cart for a user
