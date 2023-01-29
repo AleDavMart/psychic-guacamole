@@ -33,3 +33,12 @@ Be on the lookout for weekly updates.
 <li>TBD</li>
 <li>TBD</li>
 </ol>
+
+***
+### **Long Term Goals for the project:**
+<ul>
+<li>Create an Errors library to display more specific error messages to the user.</li>
+<li>Build out a user profile which sends an email to reset password</li>
+<li>Review the backend security</li>
+<li>Host on a serve like Heroku</li>
+</ul>

@@ -198,7 +198,7 @@ app.get('/payment/', async (req, res) => {
 });
 
 
-// Get all succesful payments processed by a User -- NEED to test later once
+// Get all succesful payments processed by a User (aka Order History)
 app.get('/payment/:userName', async (req, res) => {
   try {
     let userName = req.params.userName;
@@ -221,7 +221,7 @@ try{
 }
 })
 
-
-// Get all past orders for a user 
+// Create an order (This is before the payment session is initiated and should feed this information into
+// the payment sesssion call)
 
 
