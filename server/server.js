@@ -161,14 +161,14 @@ app.patch('/product/:id', async (req, res) => {
           )
         }
 
-        if(newProduct.quantity != null){
+        if (newProduct.quantity != null) {
           await Product.update(
             { quantity: `${newProduct.quantity}` },
             { where: { id: `${prodID}` } }
           )
         }
 
-        if(newProduct.picture != null){
+        if (newProduct.picture != null) {
           await Product.update(
             { picture: `${newProduct.picture}` },
             { where: { id: `${prodID}` } }
@@ -204,24 +204,46 @@ app.get('/payment/:userName', async (req, res) => {
     let userName = req.params.userName;
     let user = await User.findOne({ where: { userName: `${userName}` } });
     return res.json(user.orderHistory)
-  } catch(error){
+  } catch (error) {
     console.log(error);
   }
 });
 
 
 // Get current shopping cart for a user
-app.get('/shoppingCart/:userName', async(req,res)=> {
-try{
-  let userName = req.params.userName;
-  let user = await User.findOne({ where: { userName: `${userName}` } });
-  return res.json(user.shoppingCart)
-}catch(error){
-  console.log(error);
-}
+app.get('/shoppingCart/:userName', async (req, res) => {
+  try {
+    let userName = req.params.userName;
+    let user = await User.findOne({ where: { userName: `${userName}` } });
+    return res.json(user.shoppingCart)
+  } catch (error) {
+    console.log(error);
+  }
 })
 
 // Create an order (This is before the payment session is initiated and should feed this information into
 // the payment sesssion call)
 
+
+// -------------------------------------------ADYEN API CALLS ------------------------------------------------
+
+
+// Starting a payment session - pulling the information from the shopping cart to send
+app.post('https://checkout-test.adyen.com/v69/sessions', async (req, res) => {
+  try {
+
+  } catch (error) {
+    console.log(error);
+  }
+});
+
+
+// Getting all the payment methods available in my store - To display on the front end for the shopper when checking out 
+app.post('https://checkout-test.adyen.com/v69/paymentMethods', async(req, res) => {
+try{
+
+}catch(error){
+  console.log(erro);
+}
+})
 
