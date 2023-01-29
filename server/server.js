@@ -198,7 +198,7 @@ app.get('/payment/', async (req, res) => {
 });
 
 
-// Get all payments processed by a User -- NEED to test later once
+// Get all succesful payments processed by a User -- NEED to test later once
 app.get('/payment/:userName', async (req, res) => {
   try {
     let userName = req.params.userName;
@@ -207,11 +207,19 @@ app.get('/payment/:userName', async (req, res) => {
   } catch(error){
     console.log(error);
   }
+});
+
+
+// Get current shopping cart for a user
+app.get('/shoppingCart/:userName', async(req,res)=> {
+try{
+  let userName = req.params.userName;
+  let user = await User.findOne({ where: { userName: `${userName}` } });
+  return res.json(user.shoppingCart)
+}catch(error){
+  console.log(error);
+}
 })
-
-
-// Get shopping cart for a user
-
 
 
 // Get all past orders for a user 
