@@ -13,6 +13,37 @@ const morgan = require('morgan');
 const bodyParser = require('body-parser');
 const { userInfo } = require('os');
 const { Op, where } = require('sequelize');
+const { Client, Config, CheckoutAPI} = require ("@adyen/api-library");
+
+// -------------------------Setting up Adyen Drop-in Configuration Object-----------------------
+
+const configuration = {
+  environment: 'test', 
+  clientKey: 'test_IVAXL2NHVNB3RLMO76IS7H3FKY7IWKJO', // Public key used for client-side authentication: https://docs.adyen.com/development-resources/client-side-authentication
+  analytics: {
+    enabled: false // Set to false to not send analytics data to Adyen.
+  },
+  session: {
+    id: 'CSAB4255EBF1D3812A', // Unique identifier for the payment session. - need to pull this from the session initiated
+    sessionData: 'Ab02b4c0!BQABAgBF075hBuna2MpLYvE1LVcaaEgCby8+VMMBFryjRe7M4Er4kyLy8ysNnUVWFrLCdc4/XTSET8mSnFONdVxRan2hEEy5RXku3SpY0tHbLejWA522wK3snYR7SRKq7k/MlXOH1PCWZqJioiZ6s2ud9u/rq9K93E9vXRmAhipO2lk1ehzCgMyEOW73F1m7gEHmTcTC1gCJPY6A0Ma9y26ro+EbHVvy9dU+ZnRRBB63vnH4p82ZfrDxaF7ZVaqDnxjdcf5+4Lgwz+JFiaK3YQvsEj9IX3hFaMTUI3R+b6NKZEqr4FuSed9In4QjMNdpZars8z2gW43lZsqXlKJhNxE25R+SQNq7FhEjyp3CiLEPFv4twGigHCpIN8L4lE7QGtN7idqmiN8NxzHt9raESsswiH6zFVz5+SaJ7/LkztLV5AjhjoYFRB6pPIj1awj5Y6M9qifxMeB1A/zEszE54QNRoCzvrg+HtL6JBC5VCSjwDytkGlx1tqGZ16SobEgRPlB00JwVecCdLFwBjuKwAS4fyqqoUoa4JlgBcKIfNeUsMfiwsBvBDGzGnJeLF4M7QIjqSL19slAOgLBPVonq4DUDm6tvLHhGveNKkDP8kdvR6JxFIDjs9UTTeBMj1HHsRKWgsCLbJV31Mi1Mq1bVxrDe9Xi/CFEBVYCtldtwlzgsQmNpShDlCUE3cOXu1JhzGucM8lkcAEp7ImtleSI6IkFGMEFBQTEwM0NBNTM3RUFFRDg3QzI0REQ1MzkwOUI4MEE3OEE5MjNFMzgyM0Q2OERBQ0M5NEI5RkY4MzA1REMifdUgl7/3dGB0KXXtlz3UH2zx5yhnSAoD2t6jVnG1uLw6lszqoc68UR4xxRkOMQrW8j3Pc2E/OfGQwVIPU3KnRqBkUIe5hvgYFvC55aSI+0qNDxYX9eZltZbLOhH99kQOegLXDvkGNpL4gcXPDF9wljlWMuNn/yIHzPDShCU7DcqDqvbODq2K51xsrFkqqP7D09d+GjnTQkG/oXJ3EzlzxW67NaSM02ENQUDgO6pX1KMN3wSZJN2BEuh8AzTVfok527dDDhGghIAXbhcBK9IZ+SSooDg4HnSetFsmj7Jw7BUnqhxWambqUn+/kwYJUMT962namTS45IJ11SmTNUKVvgENlNKawgDnMkQ0iO1sU+5cQApnb0jH0eh7w1fyUxHRXqPwV1wjM5MekbZTGTgT4vYQWNacb0UHMd0RwvlHSKmoR+lxt8tVrlRffEhB4Q==' // The payment session data.
+  },
+  onPaymentCompleted: (result, component) => {
+      console.info(result, component);
+  },
+  onError: (error, component) => {
+      console.error(error.name, error.message, error.stack, component);
+  },
+  // Any payment method specific configuration. Find the configuration specific to each payment method:  https://docs.adyen.com/payment-methods
+  // For example, this is 3D Secure configuration for cards:
+  paymentMethodsConfiguration: {
+    card: {
+      hasHolderName: true,
+      holderNameRequired: true,
+      billingAddressRequired: true
+    }
+  }
+};
+//  
 
 app.use(cors());
 
@@ -35,6 +66,7 @@ seed()
 app.listen(PORT, () => {
   console.log(`Your server is now listening to port ${PORT}`)
 })
+
 
 // -------DB Internal API Routes ------ //
 
@@ -242,8 +274,10 @@ app.post('https://checkout-test.adyen.com/v69/sessions', async (req, res) => {
 app.post('https://checkout-test.adyen.com/v69/paymentMethods', async(req, res) => {
 try{
 
+  let response = await checkout.paymentMethods;
+  let paymentMethods = 
 }catch(error){
-  console.log(erro);
+  console.log(error);
 }
 })
 
